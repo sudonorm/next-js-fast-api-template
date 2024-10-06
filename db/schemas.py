@@ -58,6 +58,15 @@ class UserInDB(UserOut):
     hashed_password: str
 
 
+class UserDetails(BaseModel):
+    address: str
+    phone_number: str
+
+
+class UserDetailsEdited(UserDetails):
+    message: str
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str
