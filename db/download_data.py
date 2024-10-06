@@ -55,7 +55,7 @@ class Download(HelperFunctions):
             pd.DataFrame: dataframe containing the data from the table
         """
 
-        query = False
+        can_query = False
 
         if table == "user_details":
             if add_clause:
@@ -71,7 +71,21 @@ class Download(HelperFunctions):
                     dataModel.UserDetail,
                 )
 
-        if query:
+            can_query = True
+
+        elif table == "users":
+            if add_clause:
+                query = select(
+                    dataModel.User,
+                ).where(eval(f'{"dataModel.User."}{clause_col}').in_(clause_col_values))
+            else:
+                query = select(
+                    dataModel.User,
+                )
+
+            can_query = True
+
+        if can_query:
             df = download_data.download_info_using_session(statement=query)
 
             if orient:
