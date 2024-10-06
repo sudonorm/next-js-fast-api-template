@@ -39,7 +39,9 @@ import sys
 import datetime
 
 home_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(home_dir)
+
+if home_dir not in sys.path:
+    sys.path.append(home_dir)
 
 from sqlalchemybulk.manager import Migrate, Connection
 from sqlalchemybulk.helper_functions import HelperFunctions

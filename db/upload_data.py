@@ -5,15 +5,19 @@ import os
 import sqlalchemy
 
 home_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append("..")
-sys.path.append(home_dir)
-sys.path.append(f'{home_dir}{os.sep}{"db"}')
+
+if home_dir not in sys.path:
+    sys.path.append(home_dir)
+if f'{home_dir}{os.sep}{"db"}' not in sys.path:
+    sys.path.append(f'{home_dir}{os.sep}{"db"}')
+if ".." not in sys.path:
+    sys.path.append("..")
 
 from . import dataModel
 
 from glob import glob
 
-from typing import List, Dict, Union, Tuple
+from typing import List, Dict, Union, Tuple, Any
 
 import warnings
 
@@ -25,7 +29,6 @@ from sqlalchemybulk.crud_helper_funcs import UploadData, DownloadData, DeleteDat
 
 ## crud
 from sqlalchemybulk.crud import BulkUpload
-from typing import Any
 
 upload = UploadData(engine=dataModel.engine)
 

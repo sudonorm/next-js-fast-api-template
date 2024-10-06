@@ -4,9 +4,13 @@ import sys
 import os
 
 home_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append("..")
-sys.path.append(home_dir)
-sys.path.append(f'{home_dir}{os.sep}{"db"}')
+
+if home_dir not in sys.path:
+    sys.path.append(home_dir)
+if f'{home_dir}{os.sep}{"db"}' not in sys.path:
+    sys.path.append(f'{home_dir}{os.sep}{"db"}')
+if ".." not in sys.path:
+    sys.path.append("..")
 
 from . import dataModel
 
