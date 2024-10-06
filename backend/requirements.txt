@@ -1,0 +1,18 @@
+fastapi
+pandas
+numpy
+pydantic[email]>2.0
+SQLAlchemy>2.0
+openpyxl
+xlrd
+uvicorn
+gunicorn
+jinja2
+orjson
+passlib
+python-jose[cryptography]
+bcrypt
+sqlalchemybulk
+psycopg2-binary >= 2.9.6
+flask_cors
+jwt
