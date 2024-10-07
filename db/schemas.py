@@ -67,6 +67,14 @@ class UserDetailsEdited(UserDetails):
     message: str
 
 
+class UserItems(BaseModel):
+    id: int
+    name: str
+    description: str
+    price: float
+    slugs: str
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str
