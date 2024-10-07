@@ -85,6 +85,20 @@ class Download(HelperFunctions):
 
             can_query = True
 
+        elif table == "user_items":
+            if add_clause:
+                query = select(
+                    dataModel.UserItem,
+                ).where(
+                    eval(f'{"dataModel.UserItem."}{clause_col}').in_(clause_col_values)
+                )
+            else:
+                query = select(
+                    dataModel.UserItem,
+                )
+
+            can_query = True
+
         if can_query:
             df = download_data.download_info_using_session(statement=query)
 
