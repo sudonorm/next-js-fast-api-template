@@ -58,7 +58,7 @@ def get_items(
 @router.get(
     "/",
     # response_model=List[UserItems],
-    status_code=status.HTTP_201_CREATED,
+    status_code=status.HTTP_200_OK,
 )
 async def get_user_items(
     current_user: User = Depends(get_current_active_user),
@@ -73,4 +73,4 @@ async def get_user_items(
             detail="Either the user does not exist or no items were found.",
         )
     else:
-        return ORJSONResponse(content=items, status_code=201)
+        return ORJSONResponse(content=items, status_code=200)
