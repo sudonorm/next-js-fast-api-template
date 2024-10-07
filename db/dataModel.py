@@ -128,6 +128,22 @@ class UserDetail(Base):
     )
 
 
+class UserItem(Base):
+    __tablename__ = "user_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", name="fk_usrid_ui"))
+    name = Column(Text, nullable=False)
+    description = Column(Text, nullable=False)
+    price = Column(Float, nullable=False)
+    slugs = Column(Text, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(user_id, slugs, name="u_usrid_slg_ui"),
+        Index("idx_user_id_ui", "user_id", unique=False, postgres_using="btree"),
+    )
+
+
 ####### DO NOT DELETE ######
 
 if ENABLE_MIGRATION:
